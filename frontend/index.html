@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bharat Smart Search</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <div class="logo">
+            <div class="logo-icon">B</div>
+
+            <div>
+                <div class="logo-title">
+                    Bharat Smart Search
+                </div>
+
+                <div class="logo-subtitle">
+                    DSA-Powered Search Engine
+                </div>
+            </div>
+        </div>
+
+
+        <nav class="nav-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#performance">
+                Performance
+            </a>
+
+            <a href="#algorithms">
+                DSA
+            </a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+        </nav>
+
+
+        <button id="themeButton"
+                class="theme-button"
+                title="Toggle theme">
+
+            ◐
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<main>
+
+<section id="home"
+         class="hero">
+
+    <div class="hero-badge">
+
+        <span class="pulse"></span>
+
+        JAVA DSA • WIKIPEDIA • UNICODE
+
+    </div>
+
+
+    <h1>
+
+        Search India.
+        <span>Discover Knowledge.</span>
+
+    </h1>
+
+
+    <p class="hero-description">
+
+        A DSA-powered text search engine using
+        <strong>HashMap, Inverted Index, Trie</strong>
+        and <strong>Merge Sort</strong>
+        to search and rank real Wikipedia content.
+
+    </p>
+
+
+    <!-- SEARCH BOX -->
+
+    <div class="search-area">
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search Wikipedia... e.g. cricket, India, Hyderabad"
+                autocomplete="off"
+            >
+
+            <button id="clearButton"
+                    class="clear-button">
+
+                ×
+
+            </button>
+
+            <select id="languageSelect"
+                    class="language-select">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="hi">
+                    हिन्दी
+                </option>
+
+                <option value="te">
+                    తెలుగు
+                </option>
+
+                <option value="ta">
+                    தமிழ்
+                </option>
+
+                <option value="kn">
+                    ಕನ್ನಡ
+                </option>
+
+                <option value="ml">
+                    മലയാളം
+                </option>
+
+                <option value="bn">
+                    বাংলা
+                </option>
+
+                <option value="mr">
+                    मराठी
+                </option>
+
+                <option value="gu">
+                    ગુજરાતી
+                </option>
+
+                <option value="pa">
+                    ਪੰਜਾਬੀ
+                </option>
+
+            </select>
+
+
+            <button id="searchButton"
+                    class="search-button">
+
+                SEARCH
+
+            </button>
+
+        </div>
+
+
+        <!-- LIVE SUGGESTIONS -->
+
+        <div id="suggestions"
+             class="suggestions">
+
+        </div>
+
+    </div>
+
+
+    <!-- QUICK SEARCH -->
+
+    <div class="quick-search">
+
+        <span>
+            Try:
+        </span>
+
+        <button class="quick-button"
+                data-query="India">
+
+            India
+
+        </button>
+
+        <button class="quick-button"
+                data-query="Hyderabad">
+
+            Hyderabad
+
+        </button>
+
+        <button class="quick-button"
+                data-query="cricket">
+
+            Cricket
+
+        </button>
+
+        <button class="quick-button"
+                data-query="machine learning">
+
+            Machine Learning
+
+        </button>
+
+        <button class="quick-button"
+                data-query="Indian culture">
+
+            Indian Culture
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SEARCH PERFORMANCE
+===================================================== -->
+
+<section id="performance"
+         class="performance-section hidden">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                LIVE SEARCH ANALYTICS
+            </div>
+
+            <h2>
+                ⚡ Search Performance
+            </h2>
+
+        </div>
+
+        <div class="query-display">
+            Searching for:
+            <strong id="searchedText">
+                -
+            </strong>
+        </div>
+
+    </div>
+
+
+    <div class="metrics-grid">
+
+        <div class="metric-card time-card">
+
+            <div class="metric-icon">
+                ⚡
+            </div>
+
+            <div class="metric-value"
+                 id="searchTime">
+
+                0 ms
+
+            </div>
+
+            <div class="metric-title">
+                Total Search Time
+            </div>
+
+            <div class="metric-description">
+                Complete request time
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="metric-icon">
+                🧠
+            </div>
+
+            <div class="metric-value"
+                 id="dsaTime">
+
+                0 ms
+
+            </div>
+
+            <div class="metric-title">
+                DSA Processing
+            </div>
+
+            <div class="metric-description">
+                Java algorithm execution
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="metric-icon">
+                📄
+            </div>
+
+            <div class="metric-value"
+                 id="documentCount">
+
+                0
+
+            </div>
+
+            <div class="metric-title">
+                Documents Indexed
+            </div>
+
+            <div class="metric-description">
+                Wikipedia candidates
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="metric-icon">
+                🎯
+            </div>
+
+            <div class="metric-value"
+                 id="matchedDocuments">
+
+                0
+
+            </div>
+
+            <div class="metric-title">
+                Matching Documents
+            </div>
+
+            <div class="metric-description">
+                Keyword matches
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="metric-icon">
+                🔤
+            </div>
+
+            <div class="metric-value"
+                 id="keywordCount">
+
+                0
+
+            </div>
+
+            <div class="metric-title">
+                Indexed Keywords
+            </div>
+
+            <div class="metric-description">
+                Unique indexed terms
+            </div>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <div class="metric-icon">
+                🔢
+            </div>
+
+            <div class="metric-value"
+                 id="resultCount">
+
+                0
+
+            </div>
+
+            <div class="metric-title">
+                Results Retrieved
+            </div>
+
+            <div class="metric-description">
+                From Wikipedia
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DSA ALGORITHMS
+===================================================== -->
+
+<section id="algorithms"
+         class="algorithms-section hidden">
+
+    <div class="section-heading centered">
+
+        <div class="section-label">
+            CORE DATA STRUCTURES & ALGORITHMS
+        </div>
+
+        <h2>
+            🧠 DSA Algorithms Used
+        </h2>
+
+        <p>
+            Every stage of the search pipeline uses a
+            specific data structure or algorithm.
+        </p>
+
+    </div>
+
+
+    <div class="algorithm-grid">
+
+        <!-- HASHMAP -->
+
+        <div class="algorithm-card">
+
+            <div class="algorithm-number">
+                01
+            </div>
+
+            <div class="algorithm-symbol">
+                #️⃣
+            </div>
+
+            <h3>
+                HashMap
+            </h3>
+
+            <span class="algorithm-role">
+                DOCUMENT STORAGE
+            </span>
+
+            <p>
+                Stores document IDs and their corresponding
+                document objects for fast lookup.
+            </p>
+
+            <div class="complexity">
+                <span>Lookup</span>
+                <strong>O(1) average</strong>
+            </div>
+
+        </div>
+
+
+        <!-- INVERTED INDEX -->
+
+        <div class="algorithm-card featured-algorithm">
+
+            <div class="algorithm-number">
+                02
+            </div>
+
+            <div class="algorithm-symbol">
+                🔎
+            </div>
+
+            <h3>
+                Inverted Index
+            </h3>
+
+            <span class="algorithm-role">
+                KEYWORD RETRIEVAL
+            </span>
+
+            <p>
+                Maps each keyword to the documents where
+                that keyword occurs and stores its frequency.
+            </p>
+
+            <div class="complexity">
+                <span>Search</span>
+                <strong>Fast keyword lookup</strong>
+            </div>
+
+        </div>
+
+
+        <!-- MERGE SORT -->
+
+        <div class="algorithm-card">
+
+            <div class="algorithm-number">
+                03
+            </div>
+
+            <div class="algorithm-symbol">
+                ↕️
+            </div>
+
+            <h3>
+                Merge Sort
+            </h3>
+
+            <span class="algorithm-role">
+                RESULT RANKING
+            </span>
+
+            <p>
+                Sorts matching documents by their keyword
+                frequency to produce ranked results.
+            </p>
+
+            <div class="complexity">
+                <span>Time</span>
+                <strong>O(n log n)</strong>
+            </div>
+
+        </div>
+
+
+        <!-- TRIE -->
+
+        <div class="algorithm-card">
+
+            <div class="algorithm-number">
+                04
+            </div>
+
+            <div class="algorithm-symbol">
+                🌳
+            </div>
+
+            <h3>
+                Trie
+            </h3>
+
+            <span class="algorithm-role">
+                PREFIX SUGGESTIONS
+            </span>
+
+            <p>
+                Stores words character-by-character and
+                supports prefix-based search suggestions.
+            </p>
+
+            <div class="complexity">
+                <span>Prefix Search</span>
+                <strong>O(L)</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PIPELINE -->
+
+    <div class="pipeline-container">
+
+        <div class="pipeline-title">
+            🔄 SEARCH ALGORITHM PIPELINE
+        </div>
+
+
+        <div class="pipeline">
+
+            <div class="pipeline-step">
+                <span>01</span>
+                <strong>Text Processing</strong>
+            </div>
+
+            <div class="pipeline-arrow">
+                →
+            </div>
+
+            <div class="pipeline-step">
+                <span>02</span>
+                <strong>HashMap</strong>
+            </div>
+
+            <div class="pipeline-arrow">
+                →
+            </div>
+
+            <div class="pipeline-step">
+                <span>03</span>
+                <strong>Inverted Index</strong>
+            </div>
+
+            <div class="pipeline-arrow">
+                →
+            </div>
+
+            <div class="pipeline-step">
+                <span>04</span>
+                <strong>Frequency Match</strong>
+            </div>
+
+            <div class="pipeline-arrow">
+                →
+            </div>
+
+            <div class="pipeline-step">
+                <span>05</span>
+                <strong>Merge Sort</strong>
+            </div>
+
+            <div class="pipeline-arrow">
+                →
+            </div>
+
+            <div class="pipeline-step">
+                <span>06</span>
+                <strong>Ranked Results</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RESULTS
+===================================================== -->
+
+<section id="resultsSection"
+         class="results-section hidden">
+
+    <div class="results-header">
+
+        <div>
+
+            <div class="section-label">
+                SEARCH RESULTS
+            </div>
+
+            <h2>
+                📚 Knowledge Found
+            </h2>
+
+        </div>
+
+
+        <div class="result-summary">
+
+            <span id="resultCountText">
+                0 results
+            </span>
+
+            <span class="dot">
+                •
+            </span>
+
+            <span id="lastSearch">
+                Just now
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div id="resultsContainer"
+         class="results-container">
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section id="how-it-works"
+         class="how-section">
+
+    <div class="section-heading centered">
+
+        <div class="section-label">
+            SYSTEM ARCHITECTURE
+        </div>
+
+        <h2>
+            How Bharat Smart Search Works
+        </h2>
+
+        <p>
+            A combination of real Wikipedia data and
+            Java data structures creates the search engine.
+        </p>
+
+    </div>
+
+
+    <div class="architecture">
+
+        <div class="architecture-step">
+
+            <div class="architecture-icon">
+                01
+            </div>
+
+            <h3>
+                User Query
+            </h3>
+
+            <p>
+                User enters a keyword or multiple keywords.
+            </p>
+
+        </div>
+
+
+        <div class="architecture-line">
+            →
+        </div>
+
+
+        <div class="architecture-step">
+
+            <div class="architecture-icon">
+                02
+            </div>
+
+            <h3>
+                Wikipedia
+            </h3>
+
+            <p>
+                Real documents are retrieved through the API.
+            </p>
+
+        </div>
+
+
+        <div class="architecture-line">
+            →
+        </div>
+
+
+        <div class="architecture-step">
+
+            <div class="architecture-icon">
+                03
+            </div>
+
+            <h3>
+                Java DSA
+            </h3>
+
+            <p>
+                HashMap and Inverted Index find matches.
+            </p>
+
+        </div>
+
+
+        <div class="architecture-line">
+            →
+        </div>
+
+
+        <div class="architecture-step">
+
+            <div class="architecture-icon">
+                04
+            </div>
+
+            <h3>
+                Ranking
+            </h3>
+
+            <p>
+                Merge Sort ranks results by frequency.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-title">
+        Bharat Smart Search
+    </div>
+
+    <div class="footer-text">
+        DSA-Based Text Analytics & Search Engine
+    </div>
+
+    <div class="footer-tech">
+        Java • HashMap • Inverted Index • Trie • Merge Sort
+    </div>
+
+</footer>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
